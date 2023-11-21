@@ -152,7 +152,11 @@ describe('RPC Server Acceptance Tests', function () {
     shell.exec(`npm install @hashgraph/hedera-local -g`);
 
     console.log('Starting local node...');
-    shell.exec(`hedera start -d`);
+    var localNodeShell = shell.exec(`hedera restart -d`);
+    if (localNodeShell.code) {
+      console.log(localNodeShell.stderr);
+      process.exit(localNodeShell.code);
+    }
     console.log('Hedera Hashgraph local node env started');
   }
 
