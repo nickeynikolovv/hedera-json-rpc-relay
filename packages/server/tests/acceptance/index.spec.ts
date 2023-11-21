@@ -155,6 +155,8 @@ describe('RPC Server Acceptance Tests', function () {
     var localNodeShell = shell.exec(`hedera restart -d`);
     if (localNodeShell.code) {
       console.log(localNodeShell.stderr);
+      shell.exec(`docker ps -a`);
+      shell.exec(`docker logs network-node`);
       process.exit(localNodeShell.code);
     }
     console.log('Hedera Hashgraph local node env started');
