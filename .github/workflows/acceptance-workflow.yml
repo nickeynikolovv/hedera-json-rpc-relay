@@ -62,7 +62,7 @@ jobs:
 
       - name: Replace relay with local
         run: |
-          docker stop json-rpc-relay
+          docker stop json-rpc-relay json-rpc-relay-ws
           npm run start &
           echo $! >/tmp/relay.pid
           npm run start:ws &
@@ -75,11 +75,11 @@ jobs:
           timeout_minutes: 20
           command: npm run acceptancetest:${{ inputs.testfilter }}
           on_retry_command: |
-            set -x
+            set -v
             kill -9 $(cat /tmp/relay.pid)
             kill -9 $(cat /tmp/relay-ws.pid)
             hedera restart
-            docker stop json-rpc-relay
+            docker stop json-rpc-relay json-rpc-relay-ws
             npm run start &
             echo $! >/tmp/relay.pid
             npm run start:ws &
