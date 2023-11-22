@@ -58,6 +58,7 @@ const LOCAL_RELAY_URL = 'http://localhost:7546';
 const RELAY_URL = process.env.E2E_RELAY_HOST || LOCAL_RELAY_URL;
 let startOperatorBalance: Hbar;
 global.relayIsLocal = RELAY_URL === LOCAL_RELAY_URL;
+shell.set('-v');
 
 describe('RPC Server Acceptance Tests', function () {
   this.timeout(240 * 1000); // 240 seconds
@@ -148,8 +149,8 @@ describe('RPC Server Acceptance Tests', function () {
       `Docker container versions, services: ${process.env['NETWORK_NODE_IMAGE_TAG']}, mirror: ${process.env['MIRROR_IMAGE_TAG']}`,
     );
 
-    console.log('Installing local node...');
-    shell.exec(`npm install @hashgraph/hedera-local -g`);
+    // console.log('Installing local node...');
+    // shell.exec(`npm install @hashgraph/hedera-local -g`);
 
     console.log('Starting local node...');
     var localNodeShell = shell.exec(`hedera restart -d`);

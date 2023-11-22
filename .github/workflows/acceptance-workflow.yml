@@ -48,6 +48,9 @@ jobs:
       - name: Build Typescript
         run: npx lerna run build
 
+      - name: Install hedera local
+        run: npm install @hashgraph/hedera-local -g
+
       - name: Set operator id and key env variable if CI is manual
         if: ${{ inputs.operator_id }}
         run: |
