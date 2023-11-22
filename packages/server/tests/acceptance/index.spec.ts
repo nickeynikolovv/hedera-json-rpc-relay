@@ -156,6 +156,14 @@ describe('RPC Server Acceptance Tests', function () {
     var localNodeShell = shell.exec(`hedera restart -d`);
     if (localNodeShell.code) {
       console.log(localNodeShell.stderr);
+      logger.info('Stop relay');
+      if (relayServer !== undefined) {
+        relayServer.close();
+      }
+
+      if (socketServer !== undefined) {
+        socketServer.close();
+      }
       shell.exec(`docker ps -a`);
       shell.exec(`docker logs network-node`);
       process.exit(localNodeShell.code);
