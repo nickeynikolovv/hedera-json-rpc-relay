@@ -20,7 +20,6 @@
 import chai from 'chai';
 import dotenv from 'dotenv';
 import path from 'path';
-import shell from 'shelljs';
 import pino from 'pino';
 import chaiAsPromised from 'chai-as-promised';
 
@@ -55,7 +54,6 @@ const LOCAL_RELAY_URL = 'http://localhost:7546';
 const RELAY_URL = process.env.E2E_RELAY_HOST || LOCAL_RELAY_URL;
 let startOperatorBalance: Hbar;
 global.relayIsLocal = RELAY_URL === LOCAL_RELAY_URL;
-shell.set('-v');
 
 describe('RPC Server Acceptance Tests', function () {
   this.timeout(240 * 1000); // 240 seconds
