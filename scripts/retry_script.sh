@@ -1,7 +1,7 @@
 #!/bin/bash
 set -v
 set +e
-kill -- -$(ps -o pgid= $(pgrep -f "npm run start"))
+pkill -f "node dist/index.js"
 hedera restart -d
 sleep 5
 docker stop json-rpc-relay json-rpc-relay-ws
