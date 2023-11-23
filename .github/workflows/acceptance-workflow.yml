@@ -76,9 +76,11 @@ jobs:
           command: npm run acceptancetest:${{ inputs.testfilter }}
           on_retry_command: |
             set -v
+            set +e
             kill -9 $(cat /tmp/relay.pid)
             kill -9 $(cat /tmp/relay-ws.pid)
             hedera restart
+            sleep 5
             docker stop json-rpc-relay json-rpc-relay-ws
             npm run start &
             echo $! >/tmp/relay.pid
