@@ -44,7 +44,7 @@ const testLogger = pino({
   },
 });
 const logger = testLogger.child({ name: 'rpc-acceptance-test' });
-
+console.log(process.env);
 const USE_LOCAL_NODE = process.env.LOCAL_NODE || 'true';
 const NETWORK = process.env.HEDERA_NETWORK || '';
 const OPERATOR_KEY = process.env.OPERATOR_KEY_MAIN || '';
