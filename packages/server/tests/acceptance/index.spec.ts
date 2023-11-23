@@ -30,7 +30,7 @@ import ServicesClient from '../clients/servicesClient';
 import MirrorClient from '../clients/mirrorClient';
 import RelayClient from '../clients/relayClient';
 import { Hbar } from '@hashgraph/sdk';
-dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../../../.env') });
 
 const testLogger = pino({
   name: 'hedera-json-rpc-relay',
