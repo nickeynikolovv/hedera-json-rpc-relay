@@ -63,10 +63,6 @@ jobs:
       - name: Replace relay with local
         run: |
           docker stop json-rpc-relay json-rpc-relay-ws
-          npm run start &
-          echo $! >/tmp/relay.pid
-          npm run start:ws &
-          echo $! >/tmp/relay-ws.pid
 
       - name: Run acceptance tests
         uses: nick-fields/retry@v2
