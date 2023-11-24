@@ -60,7 +60,7 @@ jobs:
       - name: Run hedera local
         run: hedera start -d
 
-      - name: Replace relay with local
+      - name: Stop  relay
         run: |
           docker stop json-rpc-relay json-rpc-relay-ws
 
@@ -70,7 +70,9 @@ jobs:
           max_attempts: 3
           timeout_minutes: 20
           command: npm run acceptancetest:${{ inputs.testfilter }}
-          on_retry_command: scripts/retry_script.sh
+          on_retry_command: |
+            hedera restart -d
+            docker stop json-rpc-relay json-rpc-relay-ws
 
         env:
           TEST_WS_SERVER: ${{ inputs.test_ws_server }}
