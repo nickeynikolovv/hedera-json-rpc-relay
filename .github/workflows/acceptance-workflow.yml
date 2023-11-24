@@ -34,7 +34,7 @@ jobs:
           node-version: 18
 
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install packages
         run: npm ci
@@ -70,11 +70,7 @@ jobs:
           max_attempts: 3
           timeout_minutes: 20
           command: npm run acceptancetest:${{ inputs.testfilter }}
-          on_retry_command: |
-            docker kill $(docker ps -q)
-            docker rm -v $(docker ps -qa)
-            hedera restart -d
-            docker stop json-rpc-relay json-rpc-relay-ws
+          on_retry_command: scripts/retry_script.sh
 
         env:
           TEST_WS_SERVER: ${{ inputs.test_ws_server }}

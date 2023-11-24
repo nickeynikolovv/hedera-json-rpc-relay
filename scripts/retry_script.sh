@@ -1,9 +1,7 @@
 #!/bin/bash
 set -v
 set +e
-# pkill -f "node dist/index.js"
+# docker kill $(docker ps -q)
+# docker rm -v $(docker ps -qa)
 hedera restart -d
-sleep 5
 docker stop json-rpc-relay json-rpc-relay-ws
-# npm run start &
-# npm run start:ws &
