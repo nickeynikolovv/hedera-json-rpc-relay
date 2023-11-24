@@ -71,6 +71,8 @@ jobs:
           timeout_minutes: 20
           command: npm run acceptancetest:${{ inputs.testfilter }}
           on_retry_command: |
+            docker kill $(docker ps -q)
+            docker rm -v $(docker ps -qa)
             hedera restart -d
             docker stop json-rpc-relay json-rpc-relay-ws
 
